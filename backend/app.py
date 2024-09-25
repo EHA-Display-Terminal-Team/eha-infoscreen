@@ -9,12 +9,14 @@ app = Flask(__name__)
 CORS(app)
 
 def fetch_notams():
-    url = "https://lentopaikat.fi/notam/notam.php?a=EFPR"
+    #url = "https://lentopaikat.fi/notam/notam.php?a=EFPR"
+    url = "https://lentopaikat.fi/notam/notam.php?a=EFHK"
     page = urlopen(url)
     html_bytes = page.read()
     raw_html = html_bytes.decode("ISO-8859-1")
     cleaned_html = BeautifulSoup(raw_html, "lxml").text.strip()
-    return cleaned_html
+
+    return cleaned_html[18::]
 
 # router route /api/data 
 @app.route("/api/data", methods=["GET"])
