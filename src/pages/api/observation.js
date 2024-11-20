@@ -69,7 +69,7 @@ export default async function observation() {
             const windDirectionOBSERVATION = lastObservation[3];
             const humidityOBSERVATION = lastObservation[4];
             const dewPointOBSERVATION = lastObservation[5];
-            //const oneHourPrecipitationOBSERVATION = lastObservation[6]  //Sademäärä edellisen tunnin aikana
+            const oneHourPrecipitationOBSERVATION = lastObservation[6]; //Sademäärä edellisen tunnin aikana
             const tenMinPrecipitationOBSERVATION = lastObservation[7]; //Sademäärä viimeisen 10Minuutin aikana
             const snow_awsOBSERVATION = lastObservation[8]; //Lumen syvyys (CM)
             const p_seaOBSERVATION = lastObservation[9]; //Merenpinnan paine
@@ -87,7 +87,7 @@ export default async function observation() {
                 windDirectionOBSERVATION,
                 humidityOBSERVATION,
                 dewPointOBSERVATION,
-                //oneHourPrecipitationOBSERVATION,
+                oneHourPrecipitationOBSERVATION,
                 tenMinPrecipitationOBSERVATION,
                 snow_awsOBSERVATION,
                 p_seaOBSERVATION,

@@ -9,7 +9,6 @@ import Image from 'next/image';
 import { weatherImg } from '@/pages/api/weatherIcon';
 import { getIcon } from '@/pages/api/getWeatherIcon';
 
-
 export default function WeatherServerComponent() {
     // Use the fetched weather data from CloudCover
     const [weatherData, setWeatherData] = useState(null);
@@ -67,20 +66,24 @@ export default function WeatherServerComponent() {
 
     if (!iconSrc) return null;
 
-
     // Display loading state while data is being fetched
     if (!weatherData) {
         return <div>Loading...</div>; //basic loading screen
     }
 
     return (
-        <div className={styles.box}>
+        
+        <div className={styles.box} >
+            <weatherIcon data = {weatherData}/>
+            
             {/* <div>{weatherData.observation.suomiAika}</div> */}
             <div className={styles.imgcontainer}>
                 <Image
-                   // src="/images/sun.svg"
-                    img src={iconSrc} alt={iconName}
-                   // alt="Sun Icon"
+                    // src="/images/sun.svg"
+                    img
+                    src={iconSrc}
+                    alt={iconName}
+                    // alt="Sun Icon"
                     width={50}
                     height={50}
                 />
@@ -120,9 +123,10 @@ export default function WeatherServerComponent() {
                         {weatherData.observation.dewPointOBSERVATION} °C
                     </div>
                     <div className={styles.fade}>
-                        {weatherData.observation.WindOBSERVATION} M/S</div>
-                    <div className={styles.fade}>{weatherData.observation.WindGustOBSERVATION} M/S
-
+                        {weatherData.observation.WindOBSERVATION} M/S
+                    </div>
+                    <div className={styles.fade}>
+                        {weatherData.observation.WindGustOBSERVATION} M/S
                     </div>
                     <div className={styles.fade}>
                         {weatherData.observation.visibilityOBSERVATION} KM
