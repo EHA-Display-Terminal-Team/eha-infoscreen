@@ -9,6 +9,8 @@ import Image from 'next/image';
 import { weatherImg } from '@/pages/api/weatherIcon';
 import { getIcon } from '@/pages/api/getWeatherIcon';
 
+import WeatherIcon from '@/pages/api/weatherIcon';
+
 export default function WeatherServerComponent() {
     // Use the fetched weather data from CloudCover
     const [weatherData, setWeatherData] = useState(null);
@@ -72,10 +74,8 @@ export default function WeatherServerComponent() {
     }
 
     return (
-        
-        <div className={styles.box} >
-            <weatherIcon data = {weatherData}/>
-            
+        <div className={styles.box}>
+            <WeatherIcon data={weatherData} />
             {/* <div>{weatherData.observation.suomiAika}</div> */}
             <div className={styles.imgcontainer}>
                 <Image
