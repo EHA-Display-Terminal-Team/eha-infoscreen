@@ -7,15 +7,16 @@ import forecast from '@/pages/api/forecast';
 import observation from '@/pages/api/observation';
 import Image from 'next/image';
 import { weatherImg } from '@/pages/api/weatherIcon';
-import { getIcon } from '@/pages/api/getWeatherIcon';
+
 
 import WeatherIcon from '@/pages/api/weatherIcon';
 
 export default function WeatherServerComponent() {
     // Use the fetched weather data from CloudCover
     const [weatherData, setWeatherData] = useState(null);
-    const iconName = weatherImg(weatherData); // icon names
-    const [iconSrc, setIconSrc] = useState(null); //icon images
+    //const iconName = weatherImg(weatherData); // icon names
+    const [iconName, seticonName] =useState('default');
+  
 
     //Observationdata and Forecastdata added together
     console.log(weatherData);
@@ -36,12 +37,21 @@ export default function WeatherServerComponent() {
                         forecast: forecastdata,
                         observation: observationdata,
                     });
+
+                    seticonName(weatherImg(weatherData)); // Pass observation data
+                    console.log('Icon Name:', iconName);
+                    console.log('Resolved Image Path:', `/svg/weatherIcons/${iconName}.svg`);
+                    
+                    
+
                 } else {
                     console.error(
                         'Invalid observation data received:',
                         observationdata
                     );
+                    
                 }
+
             } else {
                 console.error('Invalid forecast data received:', forecastdata);
             }
@@ -62,11 +72,7 @@ export default function WeatherServerComponent() {
         return () => clearInterval(intervalId);
     }, []); // Empty dependency array ensures the effect runs only once at mount
 
-    useEffect(() => {
-        getIcon(iconName).then(setIconSrc);
-    }, [iconName]); // call the getIcon function
-
-    if (!iconSrc) return null;
+    
 
     // Display loading state while data is being fetched
     if (!weatherData) {
@@ -75,18 +81,17 @@ export default function WeatherServerComponent() {
 
     return (
         <div className={styles.box}>
+            
             <WeatherIcon data={weatherData} />
             {/* <div>{weatherData.observation.suomiAika}</div> */}
             <div className={styles.imgcontainer}>
-                <Image
-                    // src="/images/sun.svg"
-                    img
-                    src={iconSrc}
-                    alt={iconName}
-                    // alt="Sun Icon"
-                    width={50}
-                    height={50}
-                />
+            <Image
+                 //src="/svgs/weatherIcons/default.svg"
+                 src={`/svgs/weatherIcons/${iconName }.svg`}
+                 alt={iconName}
+                 width={50}
+                 height={50}
+            />
             </div>
             <div className={styles.infocontainer}>
                 <div className={styles.left}>
@@ -113,7 +118,7 @@ export default function WeatherServerComponent() {
                         {weatherData.observation.windDirectionOBSERVATION}°
                     </div>
                     <div className={styles.fade}>
-                        {weatherData.observation.tenMinPrecipitationOBSERVATION}{' '}
+                        {weatherData.observation.oneHourPrecipitationOBSERVATION}{' '}
                         MM
                     </div>
                     <div className={styles.fade}>

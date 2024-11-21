@@ -76,7 +76,7 @@ export default async function observation() {
             const visibilityOBSERVATION = Math.round(
                 lastObservation[10] / 1000
             ); //Näkyvyys metreinä
-            const CloudCoverageOBSERVATION = lastObservation[11]; //(?/8)
+            const CloudCoverageOBSERVATION = ~~lastObservation[11]; //(?/8)
             const wawaOBSERVATION = lastObservation[12]; //Nykyinen sääilmiö
 
             // Assign weather data into the object
