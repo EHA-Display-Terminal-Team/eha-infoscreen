@@ -8,6 +8,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 If you have questions about this project, please contact us at olli.salo@myy.haaga-helia.fi or arttu.saily@myy.haaga-helia.fi. Phone numbers can be provided through email, if future discussions required.
   - [Olli](https://github.com/Ullebror)
   - [Serica](https://github.com/sericakitty)
+  - [Edoardo](https://github.com/edoardovac/)
   - [Miikka](https://github.com/MiikkaSa)
 
 
